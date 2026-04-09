@@ -13,7 +13,7 @@ $capabilities = [
             'coursecreator'  => CAP_PREVENT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_PREVENT,
-            'student'        => CAP_PREVENT,
+            'student'        => CAP_ALLOW,
         ],
     ],
 

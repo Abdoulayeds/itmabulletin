@@ -64,19 +64,29 @@ function local_itmabulletin_extend_navigation(global_navigation $navigation) {
         return;
     }
 
-    // Seul l'admin Moodle voit le menu.
-    if (!is_siteadmin()) {
-        return;
+    $systemcontext = context_system::instance();
+
+    if (has_capability('local/itmabulletin:view', $systemcontext)) {
+        $studenturl = new moodle_url('/local/itmabulletin/consultation.php');
+        $navigation->add(
+            get_string('student_nav_label', 'local_itmabulletin'),
+            $studenturl,
+            navigation_node::TYPE_CUSTOM,
+            null,
+            'local_itmabulletin_consultation',
+            new pix_icon('i/report', '')
+        );
     }
 
-    $url = new moodle_url('/local/itmabulletin/index.php');
-
-    $navigation->add(
-        'Génération des bulletins',
-        $url,
-        navigation_node::TYPE_CUSTOM,
-        null,
-        'local_itmabulletin_generate',
-        new pix_icon('i/report', '')
-    );
+    if (has_capability('local/itmabulletin:generate', $systemcontext)) {
+        $adminurl = new moodle_url('/local/itmabulletin/index.php');
+        $navigation->add(
+            get_string('admin_nav_label', 'local_itmabulletin'),
+            $adminurl,
+            navigation_node::TYPE_CUSTOM,
+            null,
+            'local_itmabulletin_generate',
+            new pix_icon('i/report', '')
+        );
+    }
 }

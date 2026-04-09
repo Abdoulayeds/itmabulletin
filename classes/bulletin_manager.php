@@ -244,8 +244,7 @@ class bulletin_manager {
         return $data;
     }
 
-    private static function patch_html_for_tcpdf(string $html): string {
-        $widths = ['44%', '7%', '15%', '15%', '10%', '9%'];
+    private static function patch_html_for_tcpdf_with_widths(string $html, array $widths): string {
 
         if (!preg_match('/<table[^>]*class="[^"]*itmabulletin-table[^"]*"[^>]*>.*?<\/table>/is', $html, $m)) {
             return $html;
@@ -335,6 +334,10 @@ class bulletin_manager {
         $html = preg_replace('/<td([^>]*)>\s*<p>(.*?)<\/p>\s*<\/td>/is', '<td$1>$2</td>', $html);
 
         return $html;
+    }
+
+    private static function patch_html_for_tcpdf(string $html): string {
+        return self::patch_html_for_tcpdf_with_widths($html, ['44%', '7%', '15%', '15%', '10%', '9%']);
     }
 
     /**
@@ -472,6 +475,123 @@ CSS;
         }
 
         $filename = 'bulletin_itma_' . $userid . '_' . $semester . '.pdf';
+        $pdf->Output($filename, 'D');
+        exit;
+    }
+
+    /**
+     * Export PDF côté consultation étudiante.
+     */
+    public static function export_student_bulletin_pdf(int $userid, string $semester, string $html): void {
+        global $CFG;
+
+        require_once($CFG->libdir . '/tcpdf/tcpdf.php');
+
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetCreator('Moodle');
+        $pdf->SetAuthor('ITMA');
+        $pdf->SetTitle('Mon bulletin – ITMA');
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->SetMargins(10, 10, 10);
+        $pdf->SetAutoPageBreak(true, 12);
+        $pdf->AddPage();
+        $pdf->SetFont('helvetica', '', 10);
+
+        $logojpg = $CFG->dirroot . '/local/itmabulletin/pix/logo.jpg';
+        $logopng = $CFG->dirroot . '/local/itmabulletin/pix/logo.png';
+
+        $chosen = null;
+        $imagetype = null;
+        if (file_exists($logojpg) && is_readable($logojpg)) {
+            $chosen = realpath($logojpg);
+            $imagetype = 'JPG';
+        } else if (file_exists($logopng) && is_readable($logopng)) {
+            $chosen = realpath($logopng);
+            $imagetype = 'PNG';
+        }
+
+        $html = preg_replace(
+            '#<img[^>]*class="[^"]*itmabulletin-logo[^"]*"[^>]*>#i',
+            '<table class="pdf-logo-space" cellspacing="0" cellpadding="0" border="0"><tr><td>&nbsp;</td></tr></table>',
+            $html
+        );
+
+        $html = preg_replace_callback(
+            '#<div\s+style="height:\s*([0-9]+)\s*px;?\s*"\s*>\s*</div>#i',
+            function($m) {
+                $h = (int)$m[1];
+                if ($h <= 0) {
+                    return '';
+                }
+                return '<table class="pdf-spacer" cellspacing="0" cellpadding="0" border="0" width="100%" style="width:100%; border-collapse:collapse;">'
+                    . '<tr><td style="height:' . $h . 'pt; line-height:' . $h . 'pt; font-size:1pt;">&nbsp;</td></tr>'
+                    . '</table>';
+            },
+            $html
+        );
+
+        $html = self::patch_html_for_tcpdf_with_widths($html, ['37%', '7%', '12%', '12%', '10%', '10%', '12%']);
+
+        $css = <<<CSS
+body { font-family: helvetica, sans-serif; font-size: 10.2pt; color: #111; }
+.itmabulletin-wrapper { width:100%; }
+.itmabulletin-etab-nom{ font-weight:900; font-size:13pt; text-align:center; text-transform:uppercase; }
+.itmabulletin-consult-subtitle{ margin-top:4px; font-size:10pt; text-align:center; font-weight:700; color:#2d2d2d; }
+.itmabulletin-student-meta{
+  border: 0.7pt solid #d7dce5;
+  background:#f8fbff;
+  padding: 8pt 9pt;
+  margin: 10pt 0 10pt 0;
+  font-size: 10pt;
+  line-height: 1.35;
+}
+.itmabulletin-student-meta div{ margin: 2pt 0; }
+.itmabulletin-table { width:100%; border-collapse:collapse; table-layout:fixed; margin-top: 8pt; }
+.itmabulletin-table th{
+  background-color:#e1e7f3;
+  border:0.7pt solid #303030;
+  padding:6pt 4pt;
+  font-size: 9pt;
+  font-weight: 900;
+  text-align:center;
+  white-space: nowrap;
+}
+.itmabulletin-table td{
+  border:0.7pt solid #303030;
+  padding:5pt 4pt;
+  font-size: 8.8pt;
+  vertical-align: middle;
+}
+.itmabulletin-ue td{ background-color:#eef1f6; font-weight:900; }
+.itmabulletin-col-ue{ white-space: normal; }
+.itmabulletin-status-badge{ font-weight:700; }
+.itmabulletin-status-ok{ color:#0c6b2f; }
+.itmabulletin-status-retake{ color:#a33b00; }
+.itmabulletin-moyenne-generale{ margin-top: 10pt; font-size: 12pt; font-weight:900; color:#9f1126; }
+.itmabulletin-note-basdepage{ margin-top: 8pt; font-size: 10.5pt; font-weight:900; color:#9f1126; }
+.itmabulletin-signatures{ width:100%; border-collapse:collapse; margin-top: 16pt; font-size: 10pt; }
+CSS;
+
+        $fullhtml = '<style>' . $css . '</style>' . $html;
+        $pdf->writeHTML($fullhtml, true, false, true, false, '');
+
+        if ($chosen && $imagetype) {
+            $imgdata = @file_get_contents($chosen);
+            if ($imgdata !== false && strlen($imgdata) > 0) {
+                try {
+                    $pdf->Image('@' . $imgdata, 4, 2, 32, 0, $imagetype);
+                } catch (\Throwable $e) {
+                    // ignore
+                }
+            }
+        }
+
+        $filename = 'mon_bulletin_itma_' . $userid . '_' . $semester . '.pdf';
         $pdf->Output($filename, 'D');
         exit;
     }

@@ -179,3 +179,83 @@
     print-color-adjust:exact;
   }
 }
+
+/* =========================================================
+   Consultation étudiant
+   ========================================================= */
+.itmabulletin-student-page{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:18px;
+  box-shadow:0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.itmabulletin-student-intro{
+  color:#4b5563;
+  margin-bottom:12px;
+}
+
+.itmabulletin-student-form{
+  margin-bottom:16px;
+}
+
+.itmabulletin-student-form-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:end;
+  gap:10px;
+}
+
+.itmabulletin-student-form-row label{
+  font-weight:700;
+  min-width:110px;
+}
+
+.itmabulletin-student-form-row select{
+  min-width:280px;
+  max-width:420px;
+}
+
+.itmabulletin-consult-subtitle{
+  margin-top:6px;
+  font-size:12px;
+  font-weight:700;
+  color:#374151;
+  letter-spacing:.3px;
+}
+
+.itmabulletin-student-meta{
+  margin:12px 0 12px;
+  border:1px solid #dbeafe;
+  background:#f8fbff;
+  border-radius:8px;
+  padding:10px 12px;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:6px 14px;
+}
+
+.itmabulletin-table-student th:last-child,
+.itmabulletin-table-student td:last-child{
+  white-space:normal;
+}
+
+.itmabulletin-status-badge{
+  display:inline-block;
+  padding:2px 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+  line-height:1.4;
+}
+
+.itmabulletin-status-ok{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.itmabulletin-status-retake{
+  background:#ffedd5;
+  color:#9a3412;
+}
