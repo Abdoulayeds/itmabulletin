@@ -1,0 +1,181 @@
+/* =========================================================
+   ITMA Bulletin - Styles (Vue Moodle / HTML)
+   ========================================================= */
+
+.itmabulletin-wrapper{
+  background:#fff;
+  padding:16px 18px;
+  max-width:980px;
+  margin:0 auto;
+}
+
+/* HEADER */
+.itmabulletin-header-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 6px 0;
+}
+.itmabulletin-header-logo{
+  width:12%;
+  vertical-align:middle;
+  padding:0;
+}
+.itmabulletin-logo{
+  width:85px;
+  height:auto;
+  display:block;
+}
+.itmabulletin-header-text{
+  text-align:center;
+  vertical-align:middle;
+  padding:0 6px;
+}
+.itmabulletin-etab-nom{
+  font-weight:900;
+  font-size:15px;
+  letter-spacing:.2px;
+  text-transform:uppercase;
+  line-height:1.1;
+  white-space:nowrap;       /* ✅ une seule ligne */
+}
+
+/* TOP INFOS */
+.itmabulletin-topinfo-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 6px 0;
+}
+.itmabulletin-topinfo-left,
+.itmabulletin-topinfo-right{
+  width:50%;
+  vertical-align:top;
+  font-size:13px;
+  line-height:1.22;
+  padding:0;
+}
+.itmabulletin-topinfo-left{ text-align:left; }
+.itmabulletin-topinfo-right{ text-align:right; }
+
+.itmabulletin-bulletin-de{
+  font-weight:900;
+  text-transform:uppercase;
+  margin-top:2px;
+}
+
+.itmabulletin-yellow-line{
+  border-top:3px solid #ffc000;
+  margin:8px 0 10px 0;
+}
+
+/* IDENTITE */
+.itmabulletin-identite-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 8px 0;
+  font-size:13px;
+}
+.itmabulletin-identite-table td{
+  padding:3px 6px;
+  border-bottom:1px solid #eee;
+  vertical-align:middle;
+}
+.itmabulletin-ident-label{
+  white-space:nowrap;
+  font-weight:700;
+}
+.itmabulletin-ident-value{
+  white-space:nowrap;
+}
+
+/* TABLE NOTES */
+.itmabulletin-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:6px;
+  table-layout:fixed; /* ✅ stable */
+}
+
+.itmabulletin-table th{
+  background:#d9d9d9;
+  border:1px solid #000;
+  padding:6px 6px;
+  font-size:12px;
+  font-weight:900 !important;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+}
+
+.itmabulletin-table td{
+  border:1px solid #000;
+  padding:5px 6px;
+  font-size:12px;
+  vertical-align:top;
+  word-break:break-word;
+  overflow-wrap:break-word;
+}
+
+.itmabulletin-table td:nth-child(2),
+.itmabulletin-table td:nth-child(3),
+.itmabulletin-table td:nth-child(4),
+.itmabulletin-table td:nth-child(5),
+.itmabulletin-table td:nth-child(6){
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+}
+
+.itmabulletin-ue td{
+  background:#f2f2f2;
+  font-weight:900;
+}
+
+.itmabulletin-ec td:first-child{
+  padding-left:18px;
+  font-weight:600;
+}
+.itmabulletin-ec:nth-of-type(even) td{
+  background:#fafafa;
+}
+
+/* MOYENNE + NB */
+.itmabulletin-moyenne-generale{
+  margin-top:10px;
+  font-size:15px;
+  font-weight:900;
+  color:#b00000;
+}
+.itmabulletin-note-basdepage{
+  margin-top:6px;
+  font-size:13px;
+  font-weight:900;
+  color:#b00000;
+}
+
+/* SIGNATURES */
+.itmabulletin-signatures{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:16px;
+  font-size:13px;
+}
+.itmabulletin-signatures td{
+  padding:4px 2px;
+}
+.itmabulletin-signature-date{ text-align:right; }
+.itmabulletin-signature-left{ text-align:left; font-weight:800; }
+.itmabulletin-signature-right{ text-align:right; font-weight:800; }
+
+@media print{
+  .itmabulletin-wrapper{ max-width:100%; padding:0; }
+  .itmabulletin-table th{
+    background:#d9d9d9 !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .itmabulletin-ue td{
+    background:#f2f2f2 !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+}

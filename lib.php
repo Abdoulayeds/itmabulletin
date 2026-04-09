@@ -1,0 +1,82 @@
+<?php
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Rend un template PHP en string (sans rien afficher).
+ *
+ * @param string $filepath Chemin absolu du fichier template
+ * @param array  $vars     Variables à injecter dans le template
+ * @return string
+ */
+function local_itmabulletin_render_template_to_string(string $filepath, array $vars = []): string {
+    if (!file_exists($filepath)) {
+        return '';
+    }
+
+    extract($vars, EXTR_SKIP);
+
+    ob_start();
+    include $filepath;
+    return (string)ob_get_clean();
+}
+
+/**
+ * Génère le PDF ITMA.
+ * IMPORTANT: aucune sortie (echo/print) hors de cette fonction.
+ */
+function local_itmabulletin_generate_pdf($student, $bulletin, $semester) {
+    global $CFG;
+
+    require_once($CFG->libdir . '/pdflib.php');
+
+    $pdf = new pdf();
+    $pdf->SetMargins(10, 10);
+    $pdf->AddPage();
+
+    // Construire HTML du tableau (tu as déjà cette fonction)
+    $notes_html = local_itmabulletin_render_notes_html($bulletin);
+
+    // Template en string (pas de echo parasite)
+    $templatepath = __DIR__ . '/templates/bulletin_pdf.php';
+    $html = local_itmabulletin_render_template_to_string($templatepath, [
+        'student'    => $student,
+        'bulletin'   => $bulletin,
+        'semester'   => $semester,
+        'notes_html' => $notes_html,
+        'CFG'        => $CFG,
+    ]);
+
+    $pdf->writeHTML($html);
+
+    $filename = "Bulletin_ITMA_{$student->lastname}_{$semester}.pdf";
+    $pdf->Output($filename, 'D');
+    exit;
+}
+
+/**
+ * Ajoute un lien de navigation vers la génération des bulletins.
+ * Visible uniquement pour l'administrateur du site.
+ *
+ * @param global_navigation $navigation
+ */
+function local_itmabulletin_extend_navigation(global_navigation $navigation) {
+    if (!isloggedin() || isguestuser()) {
+        return;
+    }
+
+    // Seul l'admin Moodle voit le menu.
+    if (!is_siteadmin()) {
+        return;
+    }
+
+    $url = new moodle_url('/local/itmabulletin/index.php');
+
+    $navigation->add(
+        'Génération des bulletins',
+        $url,
+        navigation_node::TYPE_CUSTOM,
+        null,
+        'local_itmabulletin_generate',
+        new pix_icon('i/report', '')
+    );
+}
