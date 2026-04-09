@@ -1,5 +1,7 @@
 <?php
 $string['pluginname'] = 'Bulletin ITMA';
+$string['local/itmabulletin:view'] = 'Consulter son bulletin ITMA';
+$string['local/itmabulletin:generate'] = 'Générer les bulletins ITMA (administration)';
 $string['itmabulletin:view'] = 'Voir et générer les bulletins ITMA';
 
 $string['page_title'] = 'Génération des bulletins ITMA';

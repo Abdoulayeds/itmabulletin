@@ -9,6 +9,7 @@ $capabilities = [
         'captype'      => 'read',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes'   => [
+            'user'           => CAP_ALLOW,   // Utilisateur authentifié (contexte système)
             'manager'        => CAP_ALLOW,   // Seul l'admin
             'coursecreator'  => CAP_PREVENT,
             'teacher'        => CAP_PREVENT,
