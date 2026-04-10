@@ -66,7 +66,7 @@ function local_itmabulletin_extend_navigation(global_navigation $navigation) {
 
     $systemcontext = context_system::instance();
 
-    if (has_capability('local/itmabulletin:view', $systemcontext)) {
+    if (!isguestuser()) {
         $studenturl = new moodle_url('/local/itmabulletin/consultation.php');
         $navigation->add(
             get_string('student_nav_label', 'local_itmabulletin'),

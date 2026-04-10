@@ -7,7 +7,9 @@ use local_itmabulletin\bulletin_presenter;
 require_login();
 
 $context = context_system::instance();
-require_capability('local/itmabulletin:view', $context);
+if (isguestuser()) {
+    throw new moodle_exception('noguest');
+}
 
 $PAGE->set_url(new moodle_url('/local/itmabulletin/consultation.php'));
 $PAGE->set_context($context);
