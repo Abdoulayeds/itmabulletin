@@ -3,6 +3,8 @@ namespace local_itmabulletin;
 
 defined('MOODLE_INTERNAL') || die();
 
+use html_writer;
+
 /**
  * Outils de présentation/rendu du bulletin étudiant.
  */
