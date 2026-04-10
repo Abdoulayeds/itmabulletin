@@ -128,3 +128,35 @@ function local_itmabulletin_extend_navigation_user($navigation, $user, $usercont
         );
     }
 }
+
+/**
+ * Bouton d'accès rapide sur le Dashboard étudiant.
+ *
+ * @return string
+ */
+function local_itmabulletin_before_footer(): string {
+    global $PAGE;
+
+    if (!isloggedin() || isguestuser()) {
+        return '';
+    }
+
+    // Affiche uniquement sur le dashboard utilisateur.
+    if (($PAGE->pagetype ?? '') !== 'my-index') {
+        return '';
+    }
+
+    $systemcontext = context_system::instance();
+
+    // Le bouton dashboard est destiné aux étudiants/utilisateurs non admins.
+    if (has_capability('local/itmabulletin:generate', $systemcontext)) {
+        return '';
+    }
+
+    $url = new moodle_url('/local/itmabulletin/consultation.php');
+    $button = html_writer::link($url, get_string('dashboard_cta', 'local_itmabulletin'), [
+        'class' => 'btn btn-primary itmabulletin-dashboard-btn',
+    ]);
+
+    return html_writer::div($button, 'itmabulletin-dashboard-cta');
+}

@@ -49,3 +49,4 @@ $string['student_choose_semester'] = 'Please select a semester.';
 $string['student_not_found'] = 'Unable to load your student profile.';
 $string['student_no_ue'] = 'No UE found for semester "{$a}".';
 $string['student_download_pdf'] = 'Download my bulletin as PDF';
+$string['dashboard_cta'] = 'View my bulletins';

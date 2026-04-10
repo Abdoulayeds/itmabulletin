@@ -49,3 +49,4 @@ $string['student_choose_semester'] = 'Veuillez sélectionner un semestre.';
 $string['student_not_found'] = 'Impossible de charger vos informations étudiant.';
 $string['student_no_ue'] = 'Aucune UE trouvée pour le semestre « {$a} ».';
 $string['student_download_pdf'] = 'Télécharger mon bulletin en PDF';
+$string['dashboard_cta'] = 'Consulter mes bulletins';
