@@ -90,3 +90,41 @@ function local_itmabulletin_extend_navigation(global_navigation $navigation) {
         );
     }
 }
+
+/**
+ * Ajoute un accès direct dans la navigation utilisateur (menu avatar / préférences).
+ *
+ * @param settings_navigation $navigation
+ * @param stdClass $user
+ * @param context_user $usercontext
+ * @param stdClass|null $course
+ * @param context_course|null $coursecontext
+ */
+function local_itmabulletin_extend_navigation_user($navigation, $user, $usercontext, $course, $coursecontext) {
+    if (!isloggedin() || isguestuser()) {
+        return;
+    }
+
+    $studenturl = new moodle_url('/local/itmabulletin/consultation.php');
+    $navigation->add(
+        get_string('student_nav_label', 'local_itmabulletin'),
+        $studenturl,
+        navigation_node::TYPE_SETTING,
+        null,
+        'local_itmabulletin_user_consultation',
+        new pix_icon('i/report', '')
+    );
+
+    $systemcontext = context_system::instance();
+    if (has_capability('local/itmabulletin:generate', $systemcontext)) {
+        $adminurl = new moodle_url('/local/itmabulletin/index.php');
+        $navigation->add(
+            get_string('admin_nav_label', 'local_itmabulletin'),
+            $adminurl,
+            navigation_node::TYPE_SETTING,
+            null,
+            'local_itmabulletin_user_generation',
+            new pix_icon('i/report', '')
+        );
+    }
+}
