@@ -34,7 +34,7 @@ function local_itmabulletin_generate_pdf($student, $bulletin, $semester) {
     $pdf->AddPage();
 
     // Construire HTML du tableau (tu as déjà cette fonction)
-    $notes_html = local_itmabulletin_render_notes_html($bulletin);
+    throw new coding_exception('local_itmabulletin_generate_pdf is deprecated. Use bulletin_manager PDF exports.');
 
     // Template en string (pas de echo parasite)
     $templatepath = __DIR__ . '/templates/bulletin_pdf.php';

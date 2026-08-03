@@ -13,6 +13,7 @@ if (isguestuser()) {
 
 $PAGE->set_url(new moodle_url('/local/itmabulletin/consultation.php'));
 $PAGE->set_context($context);
+$PAGE->requires->css('/local/itmabulletin/styles.css');
 $PAGE->set_title(get_string('student_page_title', 'local_itmabulletin'));
 $PAGE->set_heading(get_string('student_page_heading', 'local_itmabulletin'));
 
@@ -34,13 +35,14 @@ if (!empty($semester)) {
     $bulletin = bulletin_manager::build_semester_bulletin($userid, $semester);
 
     if (!empty($bulletin['student']) && !empty($bulletin['ues'])) {
-        $bulletinhtml = bulletin_presenter::render_student_bulletin_html($bulletin, $semester);
-
         if ($download) {
             require_sesskey();
+            $bulletinhtml = bulletin_presenter::render_student_bulletin_html($bulletin, $semester, true);
             bulletin_manager::export_student_bulletin_pdf($userid, $semester, $bulletinhtml);
             exit;
         }
+
+        $bulletinhtml = bulletin_presenter::render_student_bulletin_html($bulletin, $semester);
     }
 }
 

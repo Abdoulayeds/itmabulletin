@@ -99,7 +99,7 @@ body {
     </div>
 </div>
 
-<h3 style="text-align:center;">BULLETIN DE NOTES – ITMA</h3>
+<h3 style="text-align:center;">BULLETIN DU <?= htmlspecialchars((string)$semester, ENT_QUOTES, 'UTF-8') ?></h3>
 
 <table class="student-box">
     <tr>
@@ -116,9 +116,9 @@ body {
     <tr>
         <th>UE / Matière</th>
         <th>Crédit</th>
-        <th>Note Classe</th>
+        <th>Moy de Classe</th>
         <th>Note Examen</th>
-        <th>Moyenne</th>
+        <th>Moyenne UE</th>
         <th>Date Session</th>
     </tr>
 
