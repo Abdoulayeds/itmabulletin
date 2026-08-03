@@ -34,7 +34,7 @@ function local_itmabulletin_generate_pdf($student, $bulletin, $semester) {
     $pdf->AddPage();
 
     // Construire HTML du tableau (tu as déjà cette fonction)
-    $notes_html = local_itmabulletin_render_notes_html($bulletin);
+    throw new coding_exception('local_itmabulletin_generate_pdf is deprecated. Use bulletin_manager PDF exports.');
 
     // Template en string (pas de echo parasite)
     $templatepath = __DIR__ . '/templates/bulletin_pdf.php';
@@ -64,19 +64,99 @@ function local_itmabulletin_extend_navigation(global_navigation $navigation) {
         return;
     }
 
-    // Seul l'admin Moodle voit le menu.
-    if (!is_siteadmin()) {
+    $systemcontext = context_system::instance();
+
+    if (!isguestuser()) {
+        $studenturl = new moodle_url('/local/itmabulletin/consultation.php');
+        $navigation->add(
+            get_string('student_nav_label', 'local_itmabulletin'),
+            $studenturl,
+            navigation_node::TYPE_CUSTOM,
+            null,
+            'local_itmabulletin_consultation',
+            new pix_icon('i/report', '')
+        );
+    }
+
+    if (has_capability('local/itmabulletin:generate', $systemcontext)) {
+        $adminurl = new moodle_url('/local/itmabulletin/index.php');
+        $navigation->add(
+            get_string('admin_nav_label', 'local_itmabulletin'),
+            $adminurl,
+            navigation_node::TYPE_CUSTOM,
+            null,
+            'local_itmabulletin_generate',
+            new pix_icon('i/report', '')
+        );
+    }
+}
+
+/**
+ * Ajoute un accès direct dans la navigation utilisateur (menu avatar / préférences).
+ *
+ * @param settings_navigation $navigation
+ * @param stdClass $user
+ * @param context_user $usercontext
+ * @param stdClass|null $course
+ * @param context_course|null $coursecontext
+ */
+function local_itmabulletin_extend_navigation_user($navigation, $user, $usercontext, $course, $coursecontext) {
+    if (!isloggedin() || isguestuser()) {
         return;
     }
 
-    $url = new moodle_url('/local/itmabulletin/index.php');
-
+    $studenturl = new moodle_url('/local/itmabulletin/consultation.php');
     $navigation->add(
-        'Génération des bulletins',
-        $url,
-        navigation_node::TYPE_CUSTOM,
+        get_string('student_nav_label', 'local_itmabulletin'),
+        $studenturl,
+        navigation_node::TYPE_SETTING,
         null,
-        'local_itmabulletin_generate',
+        'local_itmabulletin_user_consultation',
         new pix_icon('i/report', '')
     );
+
+    $systemcontext = context_system::instance();
+    if (has_capability('local/itmabulletin:generate', $systemcontext)) {
+        $adminurl = new moodle_url('/local/itmabulletin/index.php');
+        $navigation->add(
+            get_string('admin_nav_label', 'local_itmabulletin'),
+            $adminurl,
+            navigation_node::TYPE_SETTING,
+            null,
+            'local_itmabulletin_user_generation',
+            new pix_icon('i/report', '')
+        );
+    }
+}
+
+/**
+ * Bouton d'accès rapide sur le Dashboard étudiant.
+ *
+ * @return string
+ */
+function local_itmabulletin_before_footer(): string {
+    global $PAGE;
+
+    if (!isloggedin() || isguestuser()) {
+        return '';
+    }
+
+    // Affiche uniquement sur le dashboard utilisateur.
+    if (($PAGE->pagetype ?? '') !== 'my-index') {
+        return '';
+    }
+
+    $systemcontext = context_system::instance();
+
+    // Le bouton dashboard est destiné aux étudiants/utilisateurs non admins.
+    if (has_capability('local/itmabulletin:generate', $systemcontext)) {
+        return '';
+    }
+
+    $url = new moodle_url('/local/itmabulletin/consultation.php');
+    $button = html_writer::link($url, get_string('dashboard_cta', 'local_itmabulletin'), [
+        'class' => 'btn btn-primary itmabulletin-dashboard-btn',
+    ]);
+
+    return html_writer::div($button, 'itmabulletin-dashboard-cta');
 }

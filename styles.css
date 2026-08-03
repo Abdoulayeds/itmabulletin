@@ -30,31 +30,79 @@
   vertical-align:middle;
   padding:0 6px;
 }
+.itmabulletin-official-header{
+  margin:0 0 8px;
+}
+.itmabulletin-official-header-table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+.itmabulletin-official-logo-cell{
+  text-align:left;
+  vertical-align:top;
+  padding:0 0 6px 0;
+}
+.itmabulletin-official-name-cell{
+  text-align:center;
+  vertical-align:middle;
+  padding-top:2px;
+}
+.itmabulletin-logo-official{
+  width:96px;
+}
 .itmabulletin-etab-nom{
   font-weight:900;
-  font-size:15px;
+  font-size:16px;
   letter-spacing:.2px;
   text-transform:uppercase;
-  line-height:1.1;
+  line-height:1.2;
   white-space:nowrap;       /* ✅ une seule ligne */
+}
+
+.itmabulletin-official-name-cell .itmabulletin-etab-nom{
+  white-space:nowrap;
+  text-align:center;
+  font-size:16px;
+  letter-spacing:0;
+}
+
+.itmabulletin-bulletin-title-center{
+  text-align:center;
+  font-size:21px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+  color:#111827;
+  margin:4px 0 0;
 }
 
 /* TOP INFOS */
 .itmabulletin-topinfo-table{
   width:100%;
   border-collapse:collapse;
-  margin:0 0 6px 0;
+  margin:0 0 8px 0;
 }
 .itmabulletin-topinfo-left,
 .itmabulletin-topinfo-right{
   width:50%;
   vertical-align:top;
   font-size:13px;
-  line-height:1.22;
+  line-height:1.35;
   padding:0;
 }
 .itmabulletin-topinfo-left{ text-align:left; }
 .itmabulletin-topinfo-right{ text-align:right; }
+.itmabulletin-info-line{
+  margin:0 0 6px;
+  color:#12385f;
+  font-size:13px;
+  font-weight:900;
+  line-height:1.28;
+}
+.itmabulletin-info-line:last-child{
+  margin-bottom:0;
+}
 
 .itmabulletin-bulletin-de{
   font-weight:900;
@@ -71,16 +119,42 @@
 .itmabulletin-identite-table{
   width:100%;
   border-collapse:collapse;
-  margin:0 0 8px 0;
-  font-size:13px;
+  margin:0 0 10px 0;
+  font-size:13.5px;
 }
 .itmabulletin-identite-table td{
-  padding:3px 6px;
-  border-bottom:1px solid #eee;
+  padding:6px 8px;
+  border-bottom:0;
   vertical-align:middle;
 }
-.itmabulletin-ident-label{
+
+.itmabulletin-identite-clean{
+  width:100%;
+  margin:0 0 10px 0;
+  font-size:13.5px;
+  line-height:1.45;
+}
+
+.itmabulletin-identite-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:2px 4px;
+}
+
+.itmabulletin-identite-left,
+.itmabulletin-identite-right{
+  display:inline-block;
   white-space:nowrap;
+}
+
+.itmabulletin-identite-right{
+  margin-left:auto;
+  text-align:right;
+}
+.itmabulletin-ident-label{
+  white-space:normal;
   font-weight:700;
 }
 .itmabulletin-ident-value{
@@ -89,7 +163,7 @@
 
 /* TABLE NOTES */
 .itmabulletin-table{
-  width:100%;
+  width:96%;
   border-collapse:collapse;
   margin-top:6px;
   table-layout:fixed; /* ✅ stable */
@@ -98,21 +172,22 @@
 .itmabulletin-table th{
   background:#d9d9d9;
   border:1px solid #000;
-  padding:6px 6px;
-  font-size:12px;
+  padding:9px 7px;
+  font-size:13px;
   font-weight:900 !important;
   text-align:center;
   vertical-align:middle;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .itmabulletin-table td{
   border:1px solid #000;
-  padding:5px 6px;
-  font-size:12px;
+  padding:11px 8px;
+  font-size:13px;
   vertical-align:top;
   word-break:break-word;
   overflow-wrap:break-word;
+  line-height:1.3;
 }
 
 .itmabulletin-table td:nth-child(2),
@@ -125,14 +200,25 @@
   white-space:nowrap;
 }
 
+.itmabulletin-table th:first-child,
+.itmabulletin-table td:first-child{
+  padding-left:18px;
+}
+
 .itmabulletin-ue td{
   background:#f2f2f2;
   font-weight:900;
+  font-size:13.2px;
+}
+
+.itmabulletin-ue-type{
+  letter-spacing:.15px;
 }
 
 .itmabulletin-ec td:first-child{
   padding-left:18px;
   font-weight:600;
+  font-size:13.2px;
 }
 .itmabulletin-ec:nth-of-type(even) td{
   background:#fafafa;
@@ -140,27 +226,40 @@
 
 /* MOYENNE + NB */
 .itmabulletin-moyenne-generale{
-  margin-top:10px;
-  font-size:15px;
+  margin-top:38px;
+  font-size:16px;
   font-weight:900;
   color:#b00000;
 }
+.itmabulletin-moyenne-generale td{
+  padding:0;
+  text-align:left;
+}
 .itmabulletin-note-basdepage{
-  margin-top:6px;
-  font-size:13px;
+  margin-top:26px;
+  font-size:13.5px;
   font-weight:900;
   color:#b00000;
+}
+
+.itmabulletin-verification{
+  margin-top:10px;
+  font-size:12px;
+}
+
+.itmabulletin-verification td{
+  padding:4px 0;
 }
 
 /* SIGNATURES */
 .itmabulletin-signatures{
   width:100%;
   border-collapse:collapse;
-  margin-top:16px;
+  margin-top:34px;
   font-size:13px;
 }
 .itmabulletin-signatures td{
-  padding:4px 2px;
+  padding:8px 2px;
 }
 .itmabulletin-signature-date{ text-align:right; }
 .itmabulletin-signature-left{ text-align:left; font-weight:800; }
@@ -178,4 +277,782 @@
     -webkit-print-color-adjust:exact;
     print-color-adjust:exact;
   }
+}
+
+/* =========================================================
+   Consultation étudiant
+   ========================================================= */
+.itmabulletin-student-page{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  padding:18px;
+  box-shadow:0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.itmabulletin-student-intro{
+  color:#4b5563;
+  margin-bottom:12px;
+}
+
+.itmabulletin-student-form{
+  margin-bottom:16px;
+}
+
+.itmabulletin-student-form-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:end;
+  gap:10px;
+}
+
+.itmabulletin-student-form-row label{
+  font-weight:700;
+  min-width:110px;
+}
+
+.itmabulletin-student-form-row select{
+  min-width:280px;
+  max-width:420px;
+}
+
+.itmabulletin-consult-subtitle{
+  margin:6px auto 0;
+  font-size:12px;
+  font-weight:700;
+  color:#374151;
+  letter-spacing:.3px;
+}
+
+.itmabulletin-student .itmabulletin-header-table{
+  margin:8px 0 18px 0;
+  border:1px solid #dbe7f3;
+  border-radius:16px;
+  background:linear-gradient(135deg, #ffffff 0%, #f8fbff 62%, #fff8ea 100%);
+  box-shadow:0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.itmabulletin-student .itmabulletin-header-logo{
+  width:110px;
+  padding:18px 8px 18px 18px;
+  vertical-align:top;
+}
+
+.itmabulletin-student .itmabulletin-logo{
+  width:82px;
+}
+
+.itmabulletin-student .itmabulletin-header-text{
+  padding:20px 20px 12px 8px;
+  vertical-align:top;
+}
+
+.itmabulletin-student .itmabulletin-etab-nom{
+  white-space:normal;
+  font-size:18px;
+  line-height:1.25;
+}
+
+.itmabulletin-student .itmabulletin-consult-subtitle{
+  margin-top:10px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:#1e3a8a;
+}
+
+.itmabulletin-student .itmabulletin-identite-table{
+  margin:14px 0 14px;
+}
+
+.itmabulletin-student .itmabulletin-student-identity{
+  border-collapse:separate !important;
+  border-spacing:8px;
+  table-layout:fixed;
+}
+
+.itmabulletin-student .itmabulletin-student-identity td{
+  border:1px solid #d6e4f0 !important;
+  border-radius:8px;
+  background:#f8fafc;
+  padding:12px 14px !important;
+  color:#0f172a;
+  vertical-align:top;
+}
+
+.itmabulletin-student .itmabulletin-student-identity span{
+  display:block;
+  margin-bottom:4px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  color:#64748b;
+}
+
+.itmabulletin-student .itmabulletin-student-identity strong{
+  display:block;
+  font-size:15px;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+.itmabulletin-student-meta{
+  margin:12px 0 12px;
+  border:1px solid #dbeafe;
+  background:#f8fbff;
+  border-radius:8px;
+  padding:10px 12px;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:6px 14px;
+}
+
+.itmabulletin-student .itmabulletin-student-meta{
+  margin:0 0 16px;
+  padding:16px 18px;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:12px 26px;
+  border-color:#d6e4f0;
+  background:#ffffff;
+  box-shadow:0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.itmabulletin-student .itmabulletin-student-meta > div{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:10px 12px;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  background:#f8fafc;
+  font-size:16px;
+  font-weight:800;
+  color:#0f172a;
+}
+
+.itmabulletin-student .itmabulletin-student-meta > div strong{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  color:#64748b;
+}
+
+.itmabulletin-student .itmabulletin-student-meta > div:nth-child(1){
+  grid-column:1;
+  grid-row:1;
+}
+
+.itmabulletin-student .itmabulletin-student-meta > div:nth-child(2){
+  grid-column:1;
+  grid-row:2;
+}
+
+.itmabulletin-student .itmabulletin-student-meta > div:nth-child(3){
+  grid-column:2;
+  grid-row:1;
+}
+
+.itmabulletin-student .itmabulletin-student-meta > div:nth-child(4){
+  grid-column:2;
+  grid-row:2;
+}
+
+.itmabulletin-table-student th:last-child,
+.itmabulletin-table-student td:last-child{
+  white-space:normal;
+}
+
+.itmabulletin-student .itmabulletin-table-student{
+  margin-top:10px;
+}
+
+.itmabulletin-status-badge{
+  display:inline-block;
+  padding:2px 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+  line-height:1.4;
+}
+
+.itmabulletin-status-ok{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.itmabulletin-status-retake{
+  background:#ffedd5;
+  color:#9a3412;
+}
+
+.itmabulletin-student .itmabulletin-signatures{
+  margin-top:22px;
+}
+
+.itmabulletin-student .itmabulletin-signatures tr:last-child td:last-child strong{
+  font-size:0;
+}
+
+.itmabulletin-student .itmabulletin-signatures tr:last-child td:last-child strong::after{
+  content:"Le Directeur des Études";
+  font-size:13px;
+  font-weight:800;
+}
+
+@media (max-width: 767px){
+  .itmabulletin-student-page{
+    padding:12px;
+    border-radius:8px;
+  }
+
+  .itmabulletin-student-page h2{
+    font-size:22px;
+    line-height:1.2;
+  }
+
+  .itmabulletin-student-form-row{
+    display:block;
+  }
+
+  .itmabulletin-student-form-row label,
+  .itmabulletin-student-form-row select,
+  .itmabulletin-student-form-row input[type="submit"]{
+    display:block;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  .itmabulletin-student-form-row select{
+    margin:6px 0 10px;
+  }
+
+  .itmabulletin-student{
+    padding:10px 0;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .itmabulletin-student .itmabulletin-header-logo,
+  .itmabulletin-student .itmabulletin-header-text{
+    display:block;
+    width:100% !important;
+    text-align:center !important;
+  }
+
+  .itmabulletin-student .itmabulletin-header-logo{
+    padding:18px 18px 8px;
+  }
+
+  .itmabulletin-student .itmabulletin-header-text{
+    padding:0 18px 18px;
+  }
+
+  .itmabulletin-student .itmabulletin-etab-nom{
+    font-size:15px;
+  }
+
+  .itmabulletin-student .itmabulletin-student-identity,
+  .itmabulletin-student .itmabulletin-student-identity tbody,
+  .itmabulletin-student .itmabulletin-student-identity tr,
+  .itmabulletin-student .itmabulletin-student-identity td{
+    display:block;
+    width:100% !important;
+  }
+
+  .itmabulletin-student .itmabulletin-student-identity{
+    border-spacing:0;
+  }
+
+  .itmabulletin-student .itmabulletin-student-identity td{
+    margin-bottom:8px;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student{
+    min-width:720px;
+  }
+
+  .itmabulletin-student .itmabulletin-student-meta{
+    grid-template-columns:1fr;
+  }
+
+  .itmabulletin-student .itmabulletin-student-meta > div:nth-child(1),
+  .itmabulletin-student .itmabulletin-student-meta > div:nth-child(2),
+  .itmabulletin-student .itmabulletin-student-meta > div:nth-child(3),
+  .itmabulletin-student .itmabulletin-student-meta > div:nth-child(4){
+    grid-column:auto;
+    grid-row:auto;
+  }
+
+  .itmabulletin-actions .itmabulletin-pdfbtn{
+    display:block;
+    width:100%;
+    margin-top:12px;
+  }
+}
+
+/* Bouton dashboard étudiant */
+.itmabulletin-dashboard-cta{
+  margin: 10px 0 16px 0;
+  text-align: right;
+}
+
+.itmabulletin-dashboard-btn{
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+}
+
+/* =========================================================
+   Administration - génération bulletin
+   ========================================================= */
+.itmabulletin-admin-page{
+  max-width:1120px;
+  margin:0 auto 24px;
+}
+
+.itmabulletin-admin-hero{
+  margin:0 0 18px;
+  padding:20px 22px;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  background:linear-gradient(135deg, #fff8e8 0%, #ffffff 60%, #f8fbff 100%);
+  box-shadow:0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.itmabulletin-admin-title{
+  margin:0 0 8px;
+  font-size:28px;
+  font-weight:800;
+  color:#0f172a;
+}
+
+.itmabulletin-admin-intro{
+  margin:0;
+  max-width:760px;
+  color:#475569;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.itmabulletin-admin-form-card{
+  margin-top:18px;
+  padding:20px 22px;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  background:#ffffff;
+  box-shadow:0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.itmabulletin-admin-form-card .mform fieldset{
+  margin-bottom:16px;
+  padding:0;
+  border:0;
+}
+
+.itmabulletin-admin-form-card .fitem{
+  margin-bottom:14px;
+}
+
+.itmabulletin-admin-form-card .fitemtitle{
+  min-width:220px;
+}
+
+.itmabulletin-admin-form-card .fitemtitle label{
+  font-weight:700;
+  color:#0f172a;
+}
+
+.itmabulletin-admin-form-card select,
+.itmabulletin-admin-form-card input[type="text"]{
+  min-height:42px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:8px 12px;
+  background:#fff;
+}
+
+/* =========================================================
+   Bulletin officiel - couche visuelle premium
+   ========================================================= */
+.itmabulletin-wrapper{
+  max-width:1040px;
+  padding:24px 28px;
+  border:1px solid #d7e0ea;
+  box-shadow:0 18px 42px rgba(15, 23, 42, 0.08);
+}
+
+.itmabulletin-official-header{
+  margin-bottom:12px;
+  padding-bottom:12px;
+  border-bottom:4px solid #f5b51b;
+}
+
+.itmabulletin-bulletin-title-center{
+  margin-top:8px;
+  color:#12385f;
+  font-size:22px;
+  letter-spacing:0;
+}
+
+.itmabulletin-topinfo-table{
+  margin:0 0 16px;
+  color:#203246;
+  border-collapse:separate !important;
+  border-spacing:0;
+  table-layout:fixed;
+}
+
+.itmabulletin-topinfo-left,
+.itmabulletin-topinfo-right{
+  background:#f8fbff;
+  border:1px solid #d7e5f2;
+  padding:12px 14px !important;
+}
+
+.itmabulletin-topinfo-left{
+  border-right:0;
+}
+
+.itmabulletin-topinfo-right{
+  text-align:right !important;
+}
+
+.itmabulletin-info-line{
+  margin:0 0 6px;
+  color:#12385f;
+  font-size:13px;
+  font-weight:900;
+  line-height:1.28;
+}
+
+.itmabulletin-info-line:last-child{
+  margin-bottom:0;
+}
+
+.itmabulletin-identite-table{
+  margin:10px 0 8px;
+  border:1px solid #d7e5f2 !important;
+  background:#f8fbff;
+}
+
+.itmabulletin-identite-table td{
+  padding:8px 10px;
+  line-height:1.25;
+}
+
+.itmabulletin-table{
+  margin-top:1px;
+  border:1px solid #b7c4d4;
+}
+
+.itmabulletin-table th{
+  background:#12385f;
+  color:#fff;
+  border:1px solid #12385f;
+  padding:7px 4px;
+  font-size:11.8px;
+  line-height:1.15;
+  white-space:nowrap;
+}
+
+.itmabulletin-table td{
+  border:1px solid #b7c4d4;
+  padding:7px 6px;
+  font-size:12px;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.itmabulletin-ue td{
+  background:#eaf1f8;
+  color:#0f2f55;
+}
+
+.itmabulletin-moyenne-generale{
+  margin:12px 0 8px;
+  border:2px solid #12385f;
+  background:#f8fbff;
+  color:#12385f;
+  text-align:center;
+  border-collapse:collapse;
+}
+
+.itmabulletin-moyenne-generale td{
+  padding:10px 14px;
+  color:#12385f;
+  text-align:center;
+  font-size:21px;
+  font-weight:900;
+  line-height:1.1;
+}
+
+.itmabulletin-note-basdepage{
+  margin-top:8px;
+  padding:8px 10px;
+  border-left:4px solid #f5b51b;
+  background:#fff8e6;
+  color:#7a2e0e;
+  font-size:12px;
+}
+
+.itmabulletin-verification{
+  margin-top:8px;
+  border:1px solid #d7e5f2;
+  background:#f8fbff;
+}
+
+.itmabulletin-verification td{
+  padding:7px 10px;
+}
+
+.itmabulletin-verification-copy strong{
+  color:#12385f;
+  font-size:13px;
+}
+
+.itmabulletin-verification-copy small,
+.itmabulletin-verification-qr small{
+  color:#536b82;
+}
+
+.itmabulletin-verification-qr img{
+  padding:0;
+  border:0;
+  background:transparent;
+}
+
+.itmabulletin-signature-line{
+  display:block;
+  width:58%;
+  height:12px;
+  margin:0 0 5px;
+  border-top:1px solid #12385f;
+}
+
+.itmabulletin-signatures{
+  margin-top:12px;
+}
+
+.itmabulletin-signatures td{
+  padding:4px 2px;
+}
+
+.itmabulletin-signature-right .itmabulletin-signature-line{
+  margin-left:auto;
+}
+
+.itmabulletin-student .itmabulletin-header-table{
+  border:1px solid #d7e5f2;
+  background:#f8fbff;
+}
+
+.itmabulletin-student .itmabulletin-student-meta{
+  border-color:#d7e5f2;
+}
+
+@media print{
+  .itmabulletin-wrapper{
+    max-width:100%;
+    padding:0;
+    border:0;
+    box-shadow:none;
+  }
+
+  .itmabulletin-table th{
+    background:#12385f !important;
+    color:#fff !important;
+  }
+
+  .itmabulletin-ue td{
+    background:#eaf1f8 !important;
+  }
+}
+
+.itmabulletin-admin-form-card .form-autocomplete-selection,
+.itmabulletin-admin-form-card .form-control{
+  border-radius:10px;
+}
+
+.itmabulletin-actions{
+  margin:18px 0 10px;
+  text-align:right;
+}
+
+.itmabulletin-pdfbtn{
+  border-radius:999px;
+  padding:10px 18px;
+  font-weight:700;
+  box-shadow:0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+@media (max-width: 767px){
+  .itmabulletin-wrapper{
+    padding:16px 12px;
+    border:0;
+    box-shadow:none;
+  }
+
+  .itmabulletin-summary-table,
+  .itmabulletin-summary-table tbody,
+  .itmabulletin-summary-table tr,
+  .itmabulletin-summary-table td,
+  .itmabulletin-verification,
+  .itmabulletin-verification tbody,
+  .itmabulletin-verification tr,
+  .itmabulletin-verification td{
+    display:block;
+    width:100% !important;
+  }
+
+  .itmabulletin-summary-cell{
+    border-right:0;
+    border-bottom:1px solid #d7e5f2;
+  }
+
+  .itmabulletin-summary-cell:last-child{
+    border-bottom:0;
+  }
+
+  .itmabulletin-verification-qr{
+    text-align:left !important;
+    padding-top:0;
+  }
+
+  .itmabulletin-topinfo-table,
+  .itmabulletin-topinfo-table tbody,
+  .itmabulletin-topinfo-table tr,
+  .itmabulletin-topinfo-table td,
+  .itmabulletin-identite-table,
+  .itmabulletin-identite-table tbody,
+  .itmabulletin-identite-table tr,
+  .itmabulletin-identite-table td{
+    display:block;
+    width:100% !important;
+  }
+
+  .itmabulletin-topinfo-left,
+  .itmabulletin-topinfo-right{
+    box-sizing:border-box;
+    border:1px solid #d7e5f2;
+    text-align:left !important;
+  }
+
+  .itmabulletin-topinfo-left{
+    border-right:1px solid #d7e5f2;
+    border-bottom:0;
+  }
+
+  .itmabulletin-identite-table td{
+    box-sizing:border-box;
+    text-align:left !important;
+    white-space:normal !important;
+  }
+
+  .itmabulletin-student .itmabulletin-header-table{
+    display:block;
+    width:100% !important;
+    table-layout:fixed;
+  }
+
+  .itmabulletin-student .itmabulletin-header-table tbody,
+  .itmabulletin-student .itmabulletin-header-table tr,
+  .itmabulletin-student .itmabulletin-header-logo,
+  .itmabulletin-student .itmabulletin-header-text{
+    display:block;
+    width:100% !important;
+    box-sizing:border-box;
+    padding:0 10px 16px !important;
+  }
+
+  .itmabulletin-student .itmabulletin-logo{
+    margin:0 auto;
+  }
+
+  .itmabulletin-student .itmabulletin-etab-nom{
+    font-size:13px;
+    line-height:1.25;
+    white-space:normal;
+    overflow-wrap:anywhere;
+  }
+
+  .itmabulletin-student .itmabulletin-consult-subtitle{
+    font-size:11px;
+    line-height:1.35;
+    white-space:normal;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student,
+  .itmabulletin-student .itmabulletin-table-student thead,
+  .itmabulletin-student .itmabulletin-table-student tbody,
+  .itmabulletin-student .itmabulletin-table-student tr,
+  .itmabulletin-student .itmabulletin-table-student th,
+  .itmabulletin-student .itmabulletin-table-student td{
+    display:block;
+    width:100% !important;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student{
+    border:0;
+    margin-top:16px;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student thead{
+    display:none;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student tr{
+    margin:0 0 12px;
+    border:1px solid #b7c4d4;
+    background:#fff;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student td{
+    box-sizing:border-box;
+    min-height:38px;
+    padding:26px 10px 9px;
+    border:0;
+    border-bottom:1px solid #d7e5f2;
+    text-align:left !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere;
+    position:relative;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student td:last-child{
+    border-bottom:0;
+  }
+
+  .itmabulletin-student .itmabulletin-table-student td::before{
+    position:absolute;
+    left:10px;
+    top:7px;
+    width:auto;
+    color:#536b82;
+    font-size:11px;
+    font-weight:900;
+    text-align:left;
+    text-transform:uppercase;
+  }
+
+  .itmabulletin-student .itmabulletin-ue td{
+    background:#eaf1f8;
+  }
+
+  .itmabulletin-student .itmabulletin-ue td:nth-child(1)::before{ content:"UE"; }
+  .itmabulletin-student .itmabulletin-ue td:nth-child(2)::before{ content:"Crédit"; }
+  .itmabulletin-student .itmabulletin-ue td:nth-child(3)::before{ content:"Type"; }
+  .itmabulletin-student .itmabulletin-ue td:nth-child(4)::before{ content:"Moyenne"; }
+  .itmabulletin-student .itmabulletin-ue td:nth-child(5)::before{ content:"Statut"; }
+
+  .itmabulletin-student .itmabulletin-ec td:nth-child(1)::before{ content:"EC"; }
+  .itmabulletin-student .itmabulletin-ec td:nth-child(2)::before{ content:"Crédit"; }
+  .itmabulletin-student .itmabulletin-ec td:nth-child(3)::before{ content:"Classe"; }
+  .itmabulletin-student .itmabulletin-ec td:nth-child(4)::before{ content:"Examen"; }
+  .itmabulletin-student .itmabulletin-ec td:nth-child(5)::before{ content:"Moyenne"; }
+  .itmabulletin-student .itmabulletin-ec td:nth-child(6)::before{ content:"Statut"; }
 }

@@ -35,7 +35,7 @@ class selection_form extends \moodleform {
             'lastname ASC, firstname ASC',
             'id, firstname, lastname, username',
             0,
-            500
+            1000
         );
 
         foreach ($users as $u) {
@@ -90,15 +90,20 @@ class selection_form extends \moodleform {
             'INFORMATIQUE RÉSEAUX ET TÉLÉCOMMUNICATIONS:Génie logiciel' => 'INFORMATIQUE RÉSEAUX ET TÉLÉCOMMUNICATIONS:Génie logiciel',
             'INFORMATIQUE RÉSEAUX ET TÉLÉCOMMUNICATIONS : RIT' => 'INFORMATIQUE RÉSEAUX ET TÉLÉCOMMUNICATIONS : RIT',
             'DROIT' => 'DROIT',
+            'DROIT RELATIONS INTERNATIONALES ET DIPLOMATIE' => 'DROIT RELATIONS INTERNATIONALES ET DIPLOMATIE',
+            'DROIT RELATIONS INTERNATIONALES ET DIPLOMATIE (DROIT PRIVE)' => 'DROIT RELATIONS INTERNATIONALES ET DIPLOMATIE (DROIT PRIVE)',
+            'DROIT RELATIONS INTERNATIONALES ET DIPLOMATIE (RID)' => 'DROIT RELATIONS INTERNATIONALES ET DIPLOMATIE (RID)',
             'DROIT PRIVE' => 'DROIT PRIVE',
             'RELATION INTERNATIONALE ET DIPLOMATIE' => 'RELATION INTERNATIONALE ET DIPLOMATIE',
-            'SCIENCE DE GESTION' => 'SCIENCE DE GESTION',
-            'SCIENCE DE GESTION : Gestion des ressources humaines' => 'SCIENCE DE GESTION : Gestion des ressources humaines',
-            'SCIENCE DE GESTION : Marketing & Vente' => 'SCIENCE DE GESTION : Marketing & Vente',
-            'SCIENCE DE GESTION : Logistique & Transport' => 'SCIENCE DE GESTION : Logistique & Transport',
-            'SCIENCE DE FINANCE' => 'SCIENCE DE FINANCE',
-            'SCIENCE DE FINANCE : Finance Comptabilité' => 'SCIENCE DE FINANCE : Finance Comptabilité',
-            'SCIENCE DE FINANCE : Monnaie Banque Assurance' => 'SCIENCE DE FINANCE : Monnaie Banque Assurance',
+            'SCIENCES DE GESTION' => 'SCIENCES DE GESTION',
+            'SCIENCES DE GESTION (GRH, MARKETING, LOGISTIQUE TRANSPORT, COMMUNICATION)' => 'SCIENCES DE GESTION (GRH, MARKETING, LOGISTIQUE TRANSPORT, COMMUNICATION)',
+            'SCIENCES DE GESTION : Gestion des ressources humaines' => 'SCIENCES DE GESTION : Gestion des ressources humaines',
+            'SCIENCES DE GESTION : Marketing & Vente' => 'SCIENCES DE GESTION : Marketing & Vente',
+            'SCIENCES DE GESTION : Logistique & Transport' => 'SCIENCES DE GESTION : Logistique & Transport',
+            'SCIENCES DE FINANCE' => 'SCIENCES DE FINANCE',
+            'SCIENCES DE FINANCE (FC, MBA)' => 'SCIENCES DE FINANCE (FC, MBA)',
+            'SCIENCES DE FINANCE : Finance Comptabilité' => 'SCIENCES DE FINANCE : Finance Comptabilité',
+            'SCIENCES DE FINANCE : Monnaie Banque Assurance' => 'SCIENCES DE FINANCE : Monnaie Banque Assurance',
         ];
 
         $mform->addElement('select', 'filiereaffichage', 'Filière', $filieres);

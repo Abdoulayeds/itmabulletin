@@ -1,5 +1,7 @@
 <?php
 $string['pluginname'] = 'Bulletin ITMA';
+$string['local/itmabulletin:view'] = 'Consulter son bulletin ITMA';
+$string['local/itmabulletin:generate'] = 'Générer les bulletins ITMA (administration)';
 $string['itmabulletin:view'] = 'Voir et générer les bulletins ITMA';
 
 $string['page_title'] = 'Génération des bulletins ITMA';
@@ -32,3 +34,19 @@ $string['total_credits'] = 'Total de crédits validés';
 
 $string['signature_dg'] = 'Le Directeur Général';
 $string['signature_da'] = 'Le Directeur Académique';
+
+$string['student_nav_label'] = 'Mes bulletins';
+$string['admin_nav_label'] = 'Génération des bulletins';
+
+$string['student_page_title'] = 'Consultation de mon bulletin';
+$string['student_page_heading'] = 'Consultation de mon bulletin';
+$string['student_form_title'] = 'Consulter mon bulletin';
+$string['student_form_intro'] = 'Choisissez un semestre pour afficher votre bulletin de notes.';
+$string['student_semester_label'] = 'Semestre';
+$string['student_semester_placeholder'] = 'Sélectionner un semestre';
+$string['student_consult_button'] = 'Consulter';
+$string['student_choose_semester'] = 'Veuillez sélectionner un semestre.';
+$string['student_not_found'] = 'Impossible de charger vos informations étudiant.';
+$string['student_no_ue'] = 'Aucune UE trouvée pour le semestre « {$a} ».';
+$string['student_download_pdf'] = 'Télécharger mon bulletin en PDF';
+$string['dashboard_cta'] = 'Consulter mes bulletins';
